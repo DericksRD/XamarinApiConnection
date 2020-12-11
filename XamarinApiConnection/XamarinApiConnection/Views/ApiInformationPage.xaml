@@ -3,10 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="XamarinApiConnection.Views.ApiInformationPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="{Binding ApiInformation.getUserProfileAsync()}"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+            <Button Text="Get User" Command="{Binding GetUserCommand}"/> 
+            <Label Text="{Binding Email}" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -17,8 +17,8 @@ namespace XamarinApiConnection
 
         protected override async void OnStart()
         {
-            //var service = new GmailApiService();
-            //var profile = await service.GetProfileAsync();
+            var service = new GmailApiService();
+            var profile = await service.GetProfileAsync();
         }
 
         protected override void OnSleep()

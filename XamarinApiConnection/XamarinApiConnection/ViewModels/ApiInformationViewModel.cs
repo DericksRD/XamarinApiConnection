@@ -1,21 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
+using System.Windows.Input;
+using Xamarin.Forms;
 using XamarinApiConnection.Models;
 using XamarinApiConnection.Services;
 
 namespace XamarinApiConnection.ViewModels
 {
-    class ApiInformationViewModel
+    class ApiInformationViewModel : INotifyPropertyChanged
     {
         public GmailUser GmailSelectedUser { get; set; }
-        public ApiInformationViewModel ApiInformation => new ApiInformationViewModel();
-        public async System.Threading.Tasks.Task<string> getUserProfileAsync()
+        public String email;
+        public String Email { 
+            get 
+            {
+                return email;
+            }
+            set 
+            {
+                email = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Email)));
+            }
+        }
+
+        public ICommand GetUserCommand => new Command(GetUserProfileAsync);
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public async void GetUserProfileAsync()
         {
-            GmailApiService gmailApi = new GmailApiService();
+            IGmailApiService gmailApi = new GmailApiService();
             GmailSelectedUser = await gmailApi.GetProfileAsync();
 
-            return GmailSelectedUser.EmailAddress;
+            Email =  GmailSelectedUser.EmailAddress;
         }
     }
 }
