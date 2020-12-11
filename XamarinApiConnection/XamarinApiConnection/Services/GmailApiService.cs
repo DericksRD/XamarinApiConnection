@@ -46,7 +46,7 @@ namespace XamarinApiConnection.Services
 
             UserCredential credential;
 
-            using (var stream = new FileStream(@"D:\Documentos\Repos\XamarinApiConnection\XamarinApiConnection\XamarinApiConnection\credentials.json",
+            using (var stream = new FileStream("credentials.json",
                                     FileMode.Open, FileAccess.Read))
             {
                 string path = "token.json";
